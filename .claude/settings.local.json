@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(cp -r ./* ../)",
+      "Bash(cp .gitignore ../)",
+      "Bash(rm -rf /c/Users/priyanshu/Desktop/AI/ECommerce/naaz-chikankari)",
+      "Bash(npm install:*)",
+      "Bash(rm -rf src/App.css src/App.jsx src/index.css src/main.jsx src/assets)",
+      "Bash(mkdir -p src/components src/data src/assets src/styles)",
+      "Bash(npx vite:*)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(ls /c/Users/priyanshu/Desktop/*.jpg /c/Users/priyanshu/Desktop/*.png /c/Users/priyanshu/Desktop/*.jpeg)"
+    ]
+  }
+}

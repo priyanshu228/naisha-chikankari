@@ -1,0 +1,68 @@
+const products = [
+  {
+    id: 1,
+    name: 'Lucknowi Chikankari Kurti',
+    price: '₹1,899',
+    description: 'Hand-embroidered white cotton kurti with intricate floral chikan work.',
+    badge: 'New',
+    image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=750&fit=crop&q=80',
+  },
+  {
+    id: 2,
+    name: 'Chikankari Georgette Saree',
+    price: '₹3,499',
+    description: 'Elegant georgette saree featuring delicate chikankari patterns throughout.',
+    badge: 'Popular',
+    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=750&fit=crop&q=80',
+  },
+  {
+    id: 3,
+    name: 'Pastel Chikan Dupatta',
+    price: '₹899',
+    description: 'Soft pastel dupatta with traditional chikan embroidery and scalloped edges.',
+    badge: null,
+    image: 'https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=600&h=750&fit=crop&q=80',
+  },
+  {
+    id: 4,
+    name: 'Ethnic Embroidered Handbag',
+    price: '₹1,299',
+    description: 'Handcrafted ethnic potli bag with chikan-inspired embroidery and tassel details.',
+    badge: 'New',
+    image: 'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=600&h=750&fit=crop&q=80',
+  },
+  {
+    id: 5,
+    name: 'Pearl & Kundan Jhumka Set',
+    price: '₹649',
+    description: 'Delicate pearl jhumkas with kundan accents, perfect for festive occasions.',
+    badge: 'Popular',
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&h=750&fit=crop&q=80',
+  },
+  {
+    id: 6,
+    name: 'Chikankari Anarkali Suit',
+    price: '₹2,799',
+    description: 'Flowing anarkali suit with all-over chikan work and mirror embellishments.',
+    badge: null,
+    image: 'https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=600&h=750&fit=crop&q=80',
+  },
+  {
+    id: 7,
+    name: 'Oxidized Silver Bangle Set',
+    price: '₹499',
+    description: 'Set of six oxidized silver bangles with traditional ethnic patterns.',
+    badge: null,
+    image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&h=750&fit=crop&q=80',
+  },
+  {
+    id: 8,
+    name: 'Cotton Chikan Palazzo Set',
+    price: '₹2,199',
+    description: 'Comfortable cotton palazzo set with elegant shadow-work chikan embroidery.',
+    badge: 'New',
+    image: 'https://images.unsplash.com/photo-1617627143233-46b828b18922?w=600&h=750&fit=crop&q=80',
+  },
+];
+
+export default products;
