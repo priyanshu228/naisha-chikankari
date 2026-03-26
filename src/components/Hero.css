@@ -228,11 +228,9 @@
   letter-spacing: 2px;
 }
 
-.hero__title-sub {
-  font-size: 0.6em;
-  font-weight: 300;
-  letter-spacing: 3px;
-  color: var(--color-text-light);
+.hero__title-second {
+  font-size: 0.65em;
+  white-space: nowrap;
 }
 
 .hero__title-char {
@@ -391,9 +389,8 @@
     letter-spacing: 1px;
   }
 
-  .hero__title-sub {
+  .hero__title-second {
     font-size: 0.55em;
-    letter-spacing: 2px;
   }
 
   .hero__cta {
