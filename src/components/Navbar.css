@@ -134,6 +134,21 @@
     display: flex;
   }
 
+  .navbar__logo-text {
+    font-size: 1.1rem;
+  }
+
+  .navbar__logo-text span {
+    display: block;
+    font-size: 0.7rem;
+    margin-left: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .navbar--scrolled .navbar__logo-text {
+    font-size: 1rem;
+  }
+
   .navbar__links {
     position: fixed;
     top: 0;

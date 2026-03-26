@@ -83,8 +83,15 @@ const Hero = () => {
             ))}
           </span>
           <span className="hero__title-line">
-            {'Chikankari & Handlooms'.split('').map((char, i) => (
+            {'Chikankari'.split('').map((char, i) => (
               <span key={i} className="hero__title-char" style={{ animationDelay: `${1.7 + i * 0.05}s` }}>
+                {char}
+              </span>
+            ))}
+          </span>
+          <span className="hero__title-line hero__title-sub">
+            {'& Handlooms'.split('').map((char, i) => (
+              <span key={i} className="hero__title-char" style={{ animationDelay: `${2.3 + i * 0.05}s` }}>
                 {char === ' ' ? '\u00A0' : char}
               </span>
             ))}
