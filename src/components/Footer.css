@@ -33,6 +33,12 @@
   color: #ffffff;
 }
 
+.footer__logo-brand {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
 .footer__logo span {
   font-weight: 400;
   color: #f0c8ce;

@@ -5,7 +5,7 @@ import './Products.css';
 
 const PRODUCTS_PER_PAGE = 12;
 
-const Products = () => {
+const Products = ({ onImageClick }) => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -63,7 +63,7 @@ const Products = () => {
           <>
             <div className="products__grid">
               {currentProducts.map((product, index) => (
-                <ProductCard key={product.id} product={product} index={index} />
+                <ProductCard key={product.id} product={product} index={index} onImageClick={onImageClick} />
               ))}
             </div>
 

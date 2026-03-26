@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="navbar__inner container">
         <a href="#home" className="navbar__logo">
           <img src="/logo.jpg" alt="Naisha Chikankari" className="navbar__logo-img" />
-          <span className="navbar__logo-text">Naisha<span>Chikankari</span></span>
+          <span className="navbar__logo-text"><span className="navbar__logo-brand">Naisha</span><span>Chikankari & Handlooms</span></span>
         </a>
 
         <button

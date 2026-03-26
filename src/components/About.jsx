@@ -20,12 +20,13 @@ const About = () => {
         <span className="section-label">Our Story</span>
         <h2 className="section-title">Crafted with Passion</h2>
         <div className="about__divider"></div>
-        <p className="about__text">
-          We specialize in handcrafted chikankari kurtis, sarees, and elegant women
-          accessories, blending tradition with modern style. Every piece in our collection
-          is a labour of love — meticulously embroidered by skilled artisans from Lucknow,
-          carrying forward a centuries-old craft.
-        </p>
+        <div className="about__text">
+          <p>Our journey began with a deep appreciation for timeless fabrics, intricate craftsmanship, and the quiet elegance of traditional wear.</p>
+          <p>We believe that clothing is more than just what you wear — it's a reflection of your identity, your confidence, and your story. Every piece in our collection is thoughtfully curated to bring together grace, comfort, and effortless style.</p>
+          <p>Rooted in tradition yet inspired by modern aesthetics, we focus on creating a space where every woman can find something that feels uniquely hers. From delicate handwork to rich weaves, each design is chosen with attention to detail and a love for authenticity.</p>
+          <p>Our aim is simple — to make you feel beautiful, confident, and connected to the artistry behind what you wear.</p>
+          <p>Because every outfit you choose becomes a part of your story… and we are honored to be a small part of it.</p>
+        </div>
         <div className="about__features">
           <div className="about__feature">
             <div className="about__feature-icon">
@@ -55,6 +56,7 @@ const About = () => {
             <p>Trusted by thousands of women across India</p>
           </div>
         </div>
+
       </div>
     </section>
   );

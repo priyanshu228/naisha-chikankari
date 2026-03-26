@@ -10,7 +10,11 @@
       "Bash(mkdir -p src/components src/data src/assets src/styles)",
       "Bash(npx vite:*)",
       "Bash(taskkill //F //IM node.exe)",
-      "Bash(ls /c/Users/priyanshu/Desktop/*.jpg /c/Users/priyanshu/Desktop/*.png /c/Users/priyanshu/Desktop/*.jpeg)"
+      "Bash(ls /c/Users/priyanshu/Desktop/*.jpg /c/Users/priyanshu/Desktop/*.png /c/Users/priyanshu/Desktop/*.jpeg)",
+      "WebSearch",
+      "WebFetch(domain:www.pexels.com)",
+      "WebFetch(domain:pixabay.com)",
+      "WebFetch(domain:unsplash.com)"
     ]
   }
 }

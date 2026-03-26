@@ -1,0 +1,22 @@
+.wave-divider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-divider__svg {
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+
+.wave-divider--flip {
+  transform: scaleY(-1);
+}
+
+@media (max-width: 768px) {
+  .wave-divider__svg {
+    height: 40px;
+  }
+}

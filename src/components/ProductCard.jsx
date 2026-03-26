@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import './ProductCard.css';
 
 const WHATSAPP_NUMBER = '918448805903';
+const SWIPE_THRESHOLD = 40;
 
-const ProductCard = ({ product, index }) => {
+const ProductCard = ({ product, index, onImageClick }) => {
   const [currentImg, setCurrentImg] = useState(0);
   const [showVideo, setShowVideo] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
+
+  // Touch/swipe state
+  const touchStart = useRef(null);
+  const touchEnd = useRef(null);
 
   const message = encodeURIComponent(
     `Hi, I am interested in ${product.name}. Please share more details.`
@@ -16,14 +22,44 @@ const ProductCard = ({ product, index }) => {
   const hasMultipleImages = images.length > 1;
   const hasVideo = product.video && product.video.trim();
 
-  const nextImage = (e) => {
-    e.stopPropagation();
+  const nextImage = useCallback((e) => {
+    if (e) e.stopPropagation();
+    setImgLoaded(false);
     setCurrentImg((prev) => (prev + 1) % images.length);
+  }, [images.length]);
+
+  const prevImage = useCallback((e) => {
+    if (e) e.stopPropagation();
+    setImgLoaded(false);
+    setCurrentImg((prev) => (prev - 1 + images.length) % images.length);
+  }, [images.length]);
+
+  // Touch handlers for swipe
+  const onTouchStart = (e) => {
+    touchEnd.current = null;
+    touchStart.current = e.targetTouches[0].clientX;
   };
 
-  const prevImage = (e) => {
+  const onTouchMove = (e) => {
+    touchEnd.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart.current || !touchEnd.current) return;
+    const distance = touchStart.current - touchEnd.current;
+    if (Math.abs(distance) >= SWIPE_THRESHOLD && hasMultipleImages) {
+      if (distance > 0) nextImage();
+      else prevImage();
+    }
+    touchStart.current = null;
+    touchEnd.current = null;
+  };
+
+  const handleImageClick = (e) => {
     e.stopPropagation();
-    setCurrentImg((prev) => (prev - 1 + images.length) % images.length);
+    if (onImageClick && images.length > 0) {
+      onImageClick(images, currentImg, product.name);
+    }
   };
 
   // Convert YouTube URL to embed
@@ -31,7 +67,6 @@ const ProductCard = ({ product, index }) => {
     if (!url) return null;
     const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^&?/]+)/);
     if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}`;
-    // Google Drive video
     const driveMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
     if (driveMatch) return `https://drive.google.com/file/d/${driveMatch[1]}/preview`;
     return url;
@@ -39,7 +74,12 @@ const ProductCard = ({ product, index }) => {
 
   return (
     <div className={`product-card fade-in-up stagger-${(index % 8) + 1}`} style={{ opacity: 0 }}>
-      <div className="product-card__media-wrap">
+      <div
+        className="product-card__media-wrap"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         {showVideo && hasVideo ? (
           <div className="product-card__video">
             <iframe
@@ -52,26 +92,31 @@ const ProductCard = ({ product, index }) => {
         ) : (
           <>
             {images.length > 0 ? (
-              <img
-                src={images[currentImg]}
-                alt={product.name}
-                className="product-card__image"
-                loading="lazy"
-              />
+              <div className="product-card__image-container" onClick={handleImageClick}>
+                {/* Skeleton shimmer */}
+                {!imgLoaded && <div className="product-card__skeleton" />}
+                <img
+                  src={images[currentImg]}
+                  alt={product.name}
+                  className={`product-card__image ${imgLoaded ? 'product-card__image--loaded' : ''}`}
+                  loading="lazy"
+                  onLoad={() => setImgLoaded(true)}
+                />
+              </div>
             ) : (
               <div className="product-card__placeholder">No Image</div>
             )}
 
             {hasMultipleImages && (
               <>
-                <button className="product-card__arrow product-card__arrow--left" onClick={prevImage} aria-label="Previous image">‹</button>
-                <button className="product-card__arrow product-card__arrow--right" onClick={nextImage} aria-label="Next image">›</button>
+                <button className="product-card__arrow product-card__arrow--left" onClick={prevImage} aria-label="Previous image">&#8249;</button>
+                <button className="product-card__arrow product-card__arrow--right" onClick={nextImage} aria-label="Next image">&#8250;</button>
                 <div className="product-card__dots">
                   {images.map((_, i) => (
                     <span
                       key={i}
                       className={`product-card__dot ${i === currentImg ? 'product-card__dot--active' : ''}`}
-                      onClick={(e) => { e.stopPropagation(); setCurrentImg(i); }}
+                      onClick={(e) => { e.stopPropagation(); setImgLoaded(false); setCurrentImg(i); }}
                     />
                   ))}
                 </div>
@@ -102,6 +147,15 @@ const ProductCard = ({ product, index }) => {
           <span className={`product-card__badge product-card__badge--${product.badge.toLowerCase()}`}>
             {product.badge}
           </span>
+        )}
+
+        {/* Zoom hint on hover */}
+        {images.length > 0 && !showVideo && (
+          <div className="product-card__zoom-hint" onClick={handleImageClick}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+          </div>
         )}
       </div>
 

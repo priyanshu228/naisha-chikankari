@@ -17,16 +17,51 @@
   overflow: hidden;
   aspect-ratio: 4 / 5;
   background: var(--color-cream);
+  cursor: pointer;
+}
+
+/* Image container */
+.product-card__image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Skeleton shimmer */
+.product-card__skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    var(--color-cream) 0%,
+    var(--color-cream) 30%,
+    #f7e4e8 50%,
+    var(--color-cream) 70%,
+    var(--color-cream) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 .product-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.6s ease, opacity 0.4s ease;
+  opacity: 0;
 }
 
-.product-card:hover .product-card__image {
+.product-card__image--loaded {
+  opacity: 1;
+}
+
+.product-card:hover .product-card__image--loaded {
   transform: scale(1.08);
 }
 
@@ -38,6 +73,36 @@
   justify-content: center;
   color: var(--color-text-muted);
   font-size: 0.9rem;
+}
+
+/* Zoom hint */
+.product-card__zoom-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--color-text);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all var(--transition-base);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.product-card:hover .product-card__zoom-hint {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.product-card__zoom-hint:hover {
+  background: #ffffff;
+  transform: scale(1.1);
 }
 
 /* Carousel arrows */
@@ -94,11 +159,12 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: background var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .product-card__dot--active {
   background: #ffffff;
+  transform: scale(1.3);
 }
 
 /* Video */
@@ -206,6 +272,13 @@
   background: var(--color-whatsapp-dark);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+/* Mobile — show arrows always for touch */
+@media (max-width: 768px) {
+  .product-card__arrow {
+    opacity: 0.7;
+  }
 }
 
 @media (max-width: 480px) {
